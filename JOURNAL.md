@@ -9,7 +9,7 @@ Some inspo:
 I'll loosely follow the [hack club jam](https://jams.hackclub.com/jam/hacker-card) for this.
 
 Components:
-+ capacitor, resistor
++ capacitor (150-220 nF total on VOUT, with 220 nF as the maximum), resistor (150-220 nF on VOUT)
 
 + 2V LED, search for the illumination color you want [here](https://jlcpcb.com/parts/2nd/Optoelectronics/LED_Indication_Discrete_71)
 
@@ -36,4 +36,13 @@ Radius: 4mm
 
 I want the design to be similar to this:
 ![mockup](/images/mockup.png)
-The front, with my information and LinkedIn qr code, and the back red LEDs oriented to be a heart and the NFC chip
+The front, with my information and LinkedIn qr code, and the back 14 red LEDs oriented to be a heart and the NFC chip. I'll add cute symbols on the silkscreen layer around the sides of the board.
+
+I'll look for an NFC chip that can harvest more power. Instead of a timer, counter and decoder I'll use an MCU.
+
+Components:
+NFC chip (NTAG 5 family)	Harvests power from the phone and provides VOUT
+PCB trace coil antenna, plus a tuning capacitor if needed	Picks up the 13.56 MHz field. This is the biggest factor in how much power you get.
+Capacitor on VOUT	Value set by the chip’s datasheet or app note (for the NT3H2111 it was 150-220 nF max, so check the NTAG 5 numbers)
+14 red LEDs	Red has the lowest Vf, which matters at about 2 V
+14 resistors (one per LED)	Limits each LED to about 1-2 mA
